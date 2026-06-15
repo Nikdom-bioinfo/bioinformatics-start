@@ -1,8 +1,14 @@
-# =================================================================
-# PROJEKT: Automatisierte Zika-Virus Genomanalyse
-# Entwickelt in der Bibliothek Heidelberg
-# Zweck: Download von NCBI-Daten und Protein-Eigenschafts-Analyse
-# =================================================================
+# Zika Virus Genome Analysis Pipeline
+#
+# A small pipeline exploring Biopython's tools end-to-end:
+# 1. Translate a short example DNA sequence into protein (Seq.translate)
+# 2. Analyze protein properties - molecular weight, amino acid 
+#    composition (ProteinAnalysis)
+# 3. Fetch a real Zika virus sequence from NCBI's database (Entrez/SeqIO)
+# 4. Cut out a section of the real sequence and translate it
+# 5. Simulate a point mutation (MutableSeq) and re-translate
+# 6. Align the original and mutated proteins to see the effect 
+#    of the mutation (PairwiseAligner)
 
 from Bio.Seq import Seq
 
@@ -127,22 +133,3 @@ print(f"Anzahl bester Alignments gefunden: {len(alignments)}")
 
 print(alignments[0])
 
-# BLAST
-
-from Bio.Blast import NCBIWWW
-
-print("--- STARTING ONLINE BLAST SEARCH ---")
-print("Bitte warten, die Suche in den USA läuft...")
-
-# Wir schicken dein mutiertes Protein an den Server der US-Regierung
-# Das kann 1-2 Minuten dauern, da Millionen Sequenzen durchsucht werden
-ergebnis_handle = NCBIWWW.qblast("blastp", "nr", "RC*SV*VRLRQFESEARANNSINRFNLDLE") # nr steht für Non-redundant protein sequences
-
-print("--- BLAST SEARCH COMPLETED ---")
-
-# Wir speichern das Ergebnis erst einmal als XML-Datei ab
-with open("my_blast_results.xml", "w") as out_handle:
-    out_handle.write(ergebnis_handle.read())
-ergebnis_handle.close()
-
-print("Ergebnisse erfolgreich unter 'my_blast_results.xml' gespeichert!")

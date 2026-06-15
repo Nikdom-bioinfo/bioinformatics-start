@@ -13,3 +13,11 @@ and saves the results as XML.
 
 ## blast_parse_results.py
 Reads the BLAST XML output and prints the top hits.
+
+## Rosalind Solutions
+Working through Rosalind problems to practice Python + bioinformatics.
+
+- [DNA](https://rosalind.info/problems/dna/) - count nucleotides in a DNA string
+- [RNA](https://rosalind.info/problems/rna/) - transcribe DNA into RNA
+- [REVC](https://rosalind.info/problems/revc/) - reverse complement of DNA
+- [GC](https://rosalind.info/problems/gc/) - compute GC content
